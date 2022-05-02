@@ -1,14 +1,14 @@
 const express = require('express')
 const database=require("./schema")
 const mongoose = require('mongoose');
-const jwt=require('jsonwebtoken')
-const cors = require('cors')
+const jwt=require('jsonwebtoken');
+const cors = require('cors');
 const app = express();
 app.use(express.json());
 
-app.use(cors())
+app.use(cors());
 
-const port = process.env.PORT || 8080
+const port = process.env.PORT || 8080;
 
  
   mongoose.connect("mongodb+srv://amazonclone1:12345@amazonclonecluster0.z55ya.mongodb.net/myFirstDatabase")
@@ -28,10 +28,10 @@ app.post('/signup', async (req, res) => {
     // database.count({}, function (err, count) {
     //     const a=count
     // })
-    const {username,email,password,confirmPassword } = req.body
-    const newuser = new database({ username,email,password,confirmPassword });
+    const {username,email,phone,password } = req.body;
+    const newuser = new database({ username,email,phone,password });
     const result = await database.insertMany([newuser])
-        .catch((e) => res.status(404).send(e))
+        .catch((e) => res.status(404).send(e));
     if (result) res.send({ status: 200, data: result, msg: "data added successfully" })
 
 })
