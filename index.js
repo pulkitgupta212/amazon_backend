@@ -32,7 +32,8 @@ app.post('/signup', async (req, res) => {
     const newuser = new database({ username,email,password,confirmPassword });
     const result = await database.insertMany([newuser])
         .catch((e) => res.status(404).send(e))
-    if (result) res.send({ status: 200, data: req.body, msg: "data added successfully" })
+    if (result) res.send({ status: 200, data: result, msg: "data added successfully" })
+
 })
 
 app.post('/login',async(req,res) => {
