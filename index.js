@@ -65,7 +65,7 @@ app.post('/single_card', async (req, res) => {
     // })
     const {title,img1,seemore } = req.body;
     const newuser = await database.single_card({title,img1,seemore });
-    const data = await databasesingle_card.insertMany([newuser])
+    const data =database.single_card.insertMany([newuser])
     if (data) res.send({ status: 200, data, msg: "data added successfully" })
 
 })
