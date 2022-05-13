@@ -58,6 +58,72 @@ app.post('/login',async(req,res) => {
 }
 })
 
+app.post('/single_card', async (req, res) => {
+    
+    // database.count({}, function (err, count) {
+    //     const a=count
+    // })
+    const {title,img1,seemore } = req.body;
+    const newuser = await database.single_card({title,img1,seemore });
+    const data = await databasesingle_card.insertMany([newuser])
+    if (data) res.send({ status: 200, data, msg: "data added successfully" })
+
+})
+
+app.get('/single_card', async (req, res) => {
+    
+    const data = await database.single_card.find({});
+    
+    res.send({ data })
+})
+
+
+
+
+
+
+app.post('/carousel_items', async (req, res) => {
+    
+    // database.count({}, function (err, count) {
+    //     const a=count
+    // })
+    const {img1,price,description,rating,amazonprime } = req.body;
+    const newuser = await database.carousel_items({img1,price,description,rating,amazonprime });
+    const data = await database.carousel_items.insertMany([newuser])
+    if (data) res.send({ status: 200, data, msg: "data added successfully" })
+
+})
+
+app.get('/carousel_items', async (req, res) => {
+    
+    const data = await database.carousel_items.find({});
+    
+    res.send({ data })
+})
+
+
+app.post('/multi_card', async (req, res) => {
+    
+    // database.count({}, function (err, count) {
+    //     const a=count
+    // })
+    const {title,img1,product1,img2,product2,img3,product3,img4,product4,seemore } = req.body;
+    const newuser = await database.multi_card({title,img1,product1,img2,product2,img3,product3,img4,product4,seemore });
+    const data = await database.multi_card.insertMany([newuser])
+    if (data) res.send({ status: 200, data, msg: "data added successfully" })
+
+})
+
+app.get('/multi_card', async (req, res) => {
+    
+    const data = await database.multi_card.find({});
+    
+    res.send({ data })
+})
+
+
+
+
 
 // app.patch('/update/:id', async (req,res)=>{
 //     try{
