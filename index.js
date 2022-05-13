@@ -43,7 +43,7 @@ app.post('/login',async(req,res) => {
     //     const a=count
     // })
     const {emailphone,password} = req.body
-    const result = await database.findOne({$and:[{$or:[{ email:emailphone },{ phone:emailphone }]},{password}]})
+    const result = await database.user_signup.findOne({$and:[{$or:[{ email:emailphone },{ phone:emailphone }]},{password}]})
     console.log(result)
     if(result) {
         const token = jwt.sign({result},'email')
