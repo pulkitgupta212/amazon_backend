@@ -118,7 +118,7 @@ app.post('/multi_card', async (req, res) => {
 app.get('/multi_card', async (req, res) => {
     
     const data = await database.multi_card.find({});
-    
+    console.log(data);
     res.send({ data })
 })
 
