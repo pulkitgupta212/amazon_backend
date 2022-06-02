@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 
 app.use(cors());
-
+const{user_signup}=database
 const port = process.env.PORT || 8080;
 
  
@@ -18,9 +18,9 @@ const port = process.env.PORT || 8080;
 
 app.get('/', async (req, res) => {
     
-    const data = await database.find({});
+    //const data = await database.find({});
     
-    res.send({ data })
+    
 })
 
 app.post('/signup', async (req, res) => {
@@ -39,13 +39,10 @@ app.post('/signup', async (req, res) => {
 
 app.post('/login',async(req,res) => {
     try{
-
-    // database.count({}, function (err, count) {
-    //     const a=count
-    // })
+      
     const {emailphone,password} = req.body
-    const result = await database.user_signup.findOne({$and:[{$or:[{ email:emailphone },{ phone:emailphone }]},{password}]})
-    console.log(result)
+    const result = await user_signup.findOne({$and:[{$or:[{ email:emailphone },{ phone:emailphone }]},{password}]})
+   
     if(result) {
         const token = jwt.sign({result},'email')
         res.send({ status: 200, data: req.body, msg: " Sign in successfully",token })
@@ -55,7 +52,9 @@ app.post('/login',async(req,res) => {
         res.status(500).send("invalid login"); 
     }
 } catch(error){
-    res.status(400).send("invalid login detailss2")
+    console.log(error);
+    res.status(500).send("invalid login detailss2")
+
 }
 })
 

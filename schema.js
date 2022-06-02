@@ -10,7 +10,7 @@ const user_signup=new Schema({
 
 })
 
-module.exports.user_signup=model("signup",user_signup)
+exports.user_signup=model("signup",user_signup)
 
 const single_card= new Schema({
     "title" : String,
@@ -18,7 +18,7 @@ const single_card= new Schema({
     "seemore" : String
 })
 
-module.exports.single_card=model("single_card",single_card)
+exports.single_card=model("single_card",single_card)
 
 const multi_card= new Schema({
     "title" : String,
@@ -33,7 +33,7 @@ const multi_card= new Schema({
     "seemore" : String
 })
 
-module.exports.multi_card=model("mutli_card",multi_card)
+exports.multi_card=model("mutli_card",multi_card)
 
 const carousel_items = new Schema({
     "img1" : String,
@@ -44,7 +44,7 @@ const carousel_items = new Schema({
 
 })
 
-module.exports.carousel_items=model("carousel_items",carousel_items)
+exports.carousel_items=model("carousel_items",carousel_items)
 
 
 
